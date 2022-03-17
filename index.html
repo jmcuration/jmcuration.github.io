@@ -16,66 +16,46 @@
 
 <div id='map'></div>
     
-<div id='console'>
-  <h1>Mapping the Jews' Temporary Shelter</h1>
+    
+    <div id='console'>
+      <h1>Mapping the Jews' Temporary Shelter</h1>
       <p>Each point represents a unique record where someone had <strong>departed for</strong> the Temporary Shelter, or <strong>settled from</strong> the Temporary Shelter. For more information, visit <a href='https://jewishmuseum.org.uk/'>the Jewish Museum, London</a>.</p>
 
-    <div class="session">
-<div class='session'>
-  <h2>Filter by Year:</h2>
-  <div class='row' id='filters'>
-    <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-    <label for='all'>All Years</label>
-    <input id='weekday' type='radio' name='toggle' value='weekday'>
-    <label for='weekday'>Specific Year</label>
-  </div>
-</div>
-
-    
-    
-    <div class='session' id='sliderbar'>
-    <h2>Filter Year: <label id='active-year'>All Years</label></h2>
-    <input id='slider' class='row' type='range' min='0' max='12' step='1' value='0' />
+      <button class="uk-button uk-button-danger" type="button" uk-toggle="target: #panel-hide">Toggle filters</button>
+      <div id="panel-hide" hidden style="margin-top:20px;">
+        <div class="session">
+          <div class='session'>
+            <h2>Filter by Year:</h2>
+              <div class='row' id='filters'>
+                <input id='all' type='radio' name='toggle' value='all' checked='checked'>
+                <label for='all'>All Years</label>
+                <input id='weekday' type='radio' name='toggle' value='weekday'>
+                <label for='weekday'>Specific Year</label>
+              </div>
+          </div>
+  
+          <div class='session' id='sliderbar'>
+            <h2>Filter Year: <label id='active-year'>All Years</label></h2>
+            <input id='slider' class='row' type='range' min='0' max='12' step='1' value='0' />
+          </div>
+          
+          <h2 style="color:#3deb34; font-weight:bold;"> Green <span style="color: #000000">and </span> <span style="color: #30b2c3; font-weight:bold;">Blue </span> <span style="color: #000000">points represent locations people departed away from to go to the JTS.</span></h2>
+          <h2 style="color:#ebe534; font-weight:bold;"> Yellow <span style="color: #000000">and </span> <span style="color: #ec008e; font-weight:bold;">Pink </span> <span style="color: #000000">points represent locations people settled after being at the JTS.</span></h2>        
+          <h2 style="color:#00000; font-weight:bold;"> Due to inconsistencies within the JTS Cards, <span style="color: #3deb34">Green </span> <span style="color: #000000">and </span> <span style="color: #ebe534">Yellow </span> <span style="color: #000000">points are correct only at a national level.</span></h2>     
+          <h2>Hide/show lines representing the movement of people, where thickness represents no. of people:</h2>    
+          <nav id="menu"></nav>
+        </div>
+      
+        <p>Please address feedback <a target="_blank" href='https://forms.gle/W25Rcj36YPP3aHA87'>to this Google Form</a>.</p>
+      </div>
     </div>
-    
-        
-        
-<h2 style="color:#3deb34; font-weight:bold;"> Green 
-  <span style="color: #000000">and </span>
-    <span style="color: #30b2c3; font-weight:bold;">Blue </span>
-    <span style="color: #000000">points represent locations people departed away from to go to the JTS.</span> 
-</h2>
-        <h2 style="color:#ebe534; font-weight:bold;"> Yellow 
-  <span style="color: #000000">and </span>
-    <span style="color: #ec008e; font-weight:bold;">Pink </span>
-    <span style="color: #000000">points represent locations people settled after being at the JTS.</span> 
-</h2>
-        
-<h2 style="color:#00000; font-weight:bold;"> Due to inconsistencies within the JTS Cards, 
-  <span style="color: #3deb34">Green </span>
-      <span style="color: #000000">and </span>
-  <span style="color: #ebe534">Yellow </span>
-    <span style="color: #000000">points are correct only at a national level.</span>
-</h2>     
-     <h2>Hide/show lines representing the movement of people, where thickness represents no. of people:</h2>
-    
-    <nav id="menu"></nav>
-    
-</div>
-    
-    
-  <p>Please address feedback <a href='https://forms.gle/W25Rcj36YPP3aHA87'>to this Google Form</a>.</p>
-
-
-
-
-</div>
     
 <style>
 body {
   margin: 0;
   padding: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:80%;
 }
 
 #map {
@@ -86,12 +66,12 @@ body {
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 30px;
 }
 
 h2 {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   margin-bottom: 10px;
 }
