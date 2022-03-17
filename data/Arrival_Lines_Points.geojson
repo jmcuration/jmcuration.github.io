@@ -1,0 +1,414 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [2,46]
+       },
+    "properties": {
+    "Year":1941,
+    "Location":"France",	
+    "Weight":1
+    }
+  }, 
+
+    
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [114.1667,22.25]
+       },
+    "properties": {
+    "Year":1945,
+    "Location":"Hong Kong",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [24,-29]
+       },
+    "properties": {
+    "Year":1945,
+    "Location":"South Africa",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [15.5,49.75]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Czechoslovakia",	
+    "Weight":80
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"England",	
+    "Weight":36
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [20,52]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Poland",	
+    "Weight":3
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [133,-27]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Australia",	
+    "Weight":2
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [5.75,52.5]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Netherlands",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1948,
+    "Location":"England",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [15.5,49.75]
+       },
+    "properties": {
+    "Year":1948,
+    "Location":"Czechoslovakia",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [13.3,47.3]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Austria",	
+    "Weight":2
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [2,46]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"France",	
+    "Weight":2
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [4,50.83]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Belgium",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [9,51]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Germany",	
+    "Weight":8
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [5.75,52.5]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Netherlands",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [20,52]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Poland",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [34.75,31.5]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Israel",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [15.5,49.75]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Czechoslovakia",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"England",	
+    "Weight":26
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [77,20]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"India",	
+    "Weight":4
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [34.75,31.5]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Israel",	
+    "Weight":3
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [20,47]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Hungary",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-95,60]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Canada",	
+    "Weight":2
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [9,51]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Germany",	
+    "Weight":12
+    }
+  },    
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [4,50.8]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Belgium",	
+    "Weight":3
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [2,46]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"France",	
+    "Weight":16
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-4.2,56.4]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Scotland",	
+    "Weight":4
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [114.1667,22.25]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Hong Kong",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [8,47]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Switzerland",	
+    "Weight":2
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-3.7,52.1]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Wales",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [5.75,52.5]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Netherlands",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [35.8,33.8]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Lebanon",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [95.9,21.9]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Myanmar",	
+    "Weight":3
+    }
+  },                         
+ {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [15,62]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Sweden",	
+    "Weight":1
+    }
+  }]
+}
