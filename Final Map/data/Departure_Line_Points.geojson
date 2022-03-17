@@ -1,0 +1,316 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [2,46]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"France",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"England",	
+    "Weight":55
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [34.75,31.5]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Israel",	
+    "Weight":3
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-4.2,56.4]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Scotland",	
+    "Weight":6
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [5.75,52.5]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Netherlands",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-3.7,52.1]
+       },
+    "properties": {
+    "Year":1946,
+    "Location":"Wales",	
+    "Weight":2
+    }
+  },  
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1947,
+    "Location":"England",	
+    "Weight":16
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-97,38]
+       },
+    "properties": {
+    "Year":1947,
+    "Location":"United States",	
+    "Weight":1
+    }
+  },  
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1948,
+    "Location":"England",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1948,
+    "Location":"England",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-95,60]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Canada",	
+    "Weight":30
+    }
+  },  
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"England",	
+    "Weight":2
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"England",	
+    "Weight":13
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [133,-27]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Australia",	
+    "Weight":1
+    }
+  },  
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-3.7,52.1]
+       },
+    "properties": {
+    "Year":1949,
+    "Location":"Wales",	
+    "Weight":1
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"England",	
+    "Weight":40
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [2,46]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"France",	
+    "Weight":1
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-95,60]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Canada",	
+    "Weight":12
+    }
+  },
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [77,20]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"India",	
+    "Weight":12
+    }
+  }, 
+     {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [34.1,31.5]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Israel",	
+    "Weight":3
+    }
+  },   
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates": [-3.7,52.1]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Wales",	
+    "Weight":3
+    }
+  },  
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates": [-84,10]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Costa Rica",	
+    "Weight":1
+    }
+  },  
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-97,38]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"United States",	
+    "Weight":3
+    }
+  },  
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-4.2,56.4]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"Scotland",	
+    "Weight":2
+    }
+  }, 
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [24,-29]
+       },
+    "properties": {
+    "Year":1950,
+    "Location":"South Africa",	
+    "Weight":1
+    }
+  },                                                       
+ {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [-1.47,53.3]
+       },
+    "properties": {
+    "Year":1951,
+    "Location":"England",	
+    "Weight":1
+    }
+  }]
+}

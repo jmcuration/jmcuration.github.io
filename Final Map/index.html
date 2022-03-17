@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mapping the JTS</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+
+<div id='map'></div>
+    
+<div id='console'>
+  <h1>Mapping the Jews' Temporary Shelter</h1>
+      <p>Each point represents a unique record where someone had <strong>departed for</strong> the Temporary Shelter, or <strong>settled from</strong> the Temporary Shelter. For more information, visit <a href='https://jewishmuseum.org.uk/'>the Jewish Museum, London</a>.</p>
+
+    <div class="session">
+<div class='session'>
+  <h2>Filter by Year:</h2>
+  <div class='row' id='filters'>
+    <input id='all' type='radio' name='toggle' value='all' checked='checked'>
+    <label for='all'>All Years</label>
+    <input id='weekday' type='radio' name='toggle' value='weekday'>
+    <label for='weekday'>Specific Year</label>
+  </div>
+</div>
+
+    
+    
+    <div class='session' id='sliderbar'>
+    <h2>Filter Year: <label id='active-year'>All Years</label></h2>
+    <input id='slider' class='row' type='range' min='0' max='12' step='1' value='0' />
+    </div>
+    
+        
+        
+<h2 style="color:#3deb34; font-weight:bold;"> Green 
+  <span style="color: #000000">and </span>
+    <span style="color: #30b2c3; font-weight:bold;">Blue </span>
+    <span style="color: #000000">points represent locations people departed away from to go to the JTS.</span> 
+</h2>
+        <h2 style="color:#ebe534; font-weight:bold;"> Yellow 
+  <span style="color: #000000">and </span>
+    <span style="color: #ec008e; font-weight:bold;">Pink </span>
+    <span style="color: #000000">points represent locations people settled after being at the JTS.</span> 
+</h2>
+        
+<h2 style="color:#00000; font-weight:bold;"> Due to inconsistencies within the JTS Cards, 
+  <span style="color: #3deb34">Green </span>
+      <span style="color: #000000">and </span>
+  <span style="color: #ebe534">Yellow </span>
+    <span style="color: #000000">points are correct only at a national level.</span>
+</h2>     
+     <h2>Hide/show lines representing the movement of people, where thickness represents no. of people:</h2>
+    
+    <nav id="menu"></nav>
+    
+</div>
+    
+    
+  <p>Please address feedback <a href='https://forms.gle/W25Rcj36YPP3aHA87'>to this Google Form</a>.</p>
+
+
+
+
+</div>
+    
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+h2 {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #2dc4b2;
+}
+
+#console {
+  position: absolute;
+  width: 240px;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: white;
+}
+    
+    .mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+    #menu {
+background: #fff;
+position: relative;
+z-index: 1;
+top: 10px;
+right: 10px;
+border-radius: 3px;
+width: 150px;
+border: 1px solid rgba(0, 0, 0, 0.4);
+font-family: 'Open Sans', sans-serif;
+}
+ 
+#menu a {
+font-size: 13px;
+color: #404040;
+display: block;
+margin: 0;
+padding: 0;
+padding: 10px;
+text-decoration: none;
+border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+text-align: center;
+}
+ 
+#menu a:last-child {
+border: none;
+}
+ 
+#menu a:hover {
+background-color: #3a909c;
+color: #404040;
+}
+ 
+#menu a.active {
+background-color: #30b2c3;
+color: #ffffff;
+}
+ 
+#menu a.active:hover {
+background: #3074a4;
+}
+
+    
+    
+</style>
+</head>
+
+<body>
+
+
+
+<script>
+    //Map details and access informaiton
+    mapboxgl.accessToken = 'pk.eyJ1IjoiamV3aXNobXVzZXVtbG9uZG9uIiwiYSI6ImNsMGk1bmhsMDAxM2Mzam1zdm0zanVqOTUifQ.snSWPSiZSkizFHvpseIbHw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/jewishmuseumlondon/cl0i5zz56002v14nwb7dneo39',
+            center: [-0.250,51.567],
+            zoom: 4
+        });
+    
+//Adding data to the map
+    map.on('load', () => {
+  
+             
+    //NATIONAL POINTS - LINE INFORMATION
+       map.addSource('arrived_from_lines', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/Arrival_Lines.geojson',
+          });
+        
+        map.addLayer({
+            'id': 'arrived_from_lines',
+            'type': 'line',
+            'source': 'arrived_from_lines',
+            'layout': {
+                // Make the layer visible by default.
+                'visibility': 'none',
+                'line-join': 'round',
+                'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#ec008e',
+            'line-width': ['get', 'Weight']
+        }
+    });
+        
+      
+               map.addSource('departure_to_lines', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/Departure_Lines.geojson',
+          });
+        
+        map.addLayer({
+            'id': 'departure_to_lines',
+            'type': 'line',
+            'source': 'departure_to_lines',
+            'layout': {
+                'visibility': 'none',
+                'line-join': 'round',
+                'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#30b2c3',
+            'line-width': ['get', 'Weight']
+        }
+    });
+        
+  map.addSource('Unique_Data', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/Unique_Data.geojson',
+          });
+        map.addLayer({
+        'id': 'Unique_Data',
+        'type': 'circle',
+        'source': 'Unique_Data',
+        'layout': {
+                'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 30,
+            'circle-stroke-width': 1,
+            'circle-opacity': 0.5,
+            'circle-color': '#ec008e'
+         },
+        });
+        
+           // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'Unique_Data', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        var p = e.features[0].properties;     
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(p.Description)
+        .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Unique_Data', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Unique_Data', () => {
+        map.getCanvas().style.cursor = '';      
+        });  
+        
+
+              
+        
+        
+        //NATIONAL POINTS - POINT INFORMATION
+             //Adding datapoints
+        map.addSource('National_Arrived_From_Points', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/National_Arrived_From_Points.geojson',
+                cluster: true,
+                clusterMaxZoom: 1, // Max zoom to cluster points on
+                clusterRadius: 2 // Radius of each cluster when clustering points (defaults to 50)
+          });
+        
+        
+                map.addLayer({
+        'id': 'National_Arrived_From_Points',
+        'type': 'circle',
+        'source': 'National_Arrived_From_Points',
+        "maxzoom": 6, // Set zoom level to whatever suits your needs
+        "minzoom": 0, // Set zoom level to whatever suits your needs
+
+        'layout': {
+                'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 8,
+            'circle-stroke-width': 1,
+            'circle-color': '#3deb34',
+            'circle-stroke-color': 'white'
+         },
+        });
+            //Adding datapoints
+        map.addSource('National_Departing_To_Points', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/National_Departing_To_Points.geojson',
+                cluster: true,
+                clusterMaxZoom: 1, // Max zoom to cluster points on
+                clusterRadius: 2 // Radius of each cluster when clustering points (defaults to 50)
+          });
+        
+        
+                map.addLayer({
+        'id': 'National_Departing_To_Points',
+        'type': 'circle',
+        'source': 'National_Departing_To_Points',
+        "maxzoom": 6, // Set zoom level to whatever suits your needs
+        "minzoom": 0, // Set zoom level to whatever suits your needs
+        'layout': {
+                'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 8,
+            'circle-stroke-width': 1,
+            'circle-color': '#ebe534',
+            'circle-stroke-color': 'white'
+         },
+        });
+                
+// When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'National_Arrived_From_Points', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        var p = e.features[0].properties;     
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<u>This person <strong>came from this location to </strong>the Jewish Temporary Shelter with the below information</u>' + '<br>' + "JML Acc No.: " + p.JML_Acc + '<br>' + "<strong>Case No: </strong>" + p.Case_no+ '<br>' + "<strong>Name: </strong>" + p.name_surname + '<br>' + "<strong>Admitted to the JTS: </strong>" + p.Arrival_Admitted_Date + '<br>' + "<strong>Arriving from: </strong>" + p.arrived_from_NATION + ', ' + p.arrived_from_CITY_COUNTY + '<br>' + "<strong>Birthplace: </strong>" + p.birthplace + '<br>' + "<strong>Nationality: </strong>" + p.nationality + '<br>' + "<strong>Age: </strong>" + p.age + '<br>' + "<strong>Trade: </strong>" + p.trade + '<br>' + "<strong>Departed from the JTS: </strong>" + p.date_of_departure + '<br>' + "<strong>Departing to: </strong>" + p.destination_CITY_COUNTY + ', ' + p.destination_NATION+ ', ' + p.destination_ADDRESS + '<br>' + "<strong>Number in Group/Family: </strong>" + p.number_in_family+ '<br>' + 'This point uses <strong>local</strong> georeferenced information.')
+        .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'National_Arrived_From_Points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'National_Arrived_From_Points', () => {
+        map.getCanvas().style.cursor = '';      
+        });          
+     
+    // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'National_Departing_To_Points', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        var p = e.features[0].properties;     
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<u>This person <strong>settled here from </strong>the Jewish Temporary Shelter with the below information</u>' + '<br>' + "JML Acc No.: " + p.JML_Acc + '<br>' + "<strong>Case No: </strong>" + p.Case_no+ '<br>' + "<strong>Name: </strong>" + p.name_surname + '<br>' + "<strong>Admitted to the JTS: </strong>" + p.Arrival_Admitted_Date + '<br>' + "<strong>Arriving from: </strong>" + p.arrived_from_NATION + ', ' + p.arrived_from_CITY_COUNTY + '<br>' + "<strong>Birthplace: </strong>" + p.birthplace + '<br>' + "<strong>Nationality: </strong>" + p.nationality + '<br>' + "<strong>Age: </strong>" + p.age + '<br>' + "<strong>Trade: </strong>" + p.trade + '<br>' + "<strong>Departed from the JTS: </strong>" + p.date_of_departure + '<br>' + "<strong>Departing to: </strong>" + p.destination_CITY_COUNTY + ', ' + p.destination_NATION+ ', ' + p.destination_ADDRESS + '<br>' + "<strong>Number in Group/Family: </strong>" + p.number_in_family + '<br>' + 'This point uses <strong>national</strong> georeferenced information.')
+        .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'National_Departing_To_Points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'National_Departing_To_Points', () => {
+        map.getCanvas().style.cursor = '';      
+        });        
+               
+        //LOCAL POINTS
+                //Adding datapoints
+        map.addSource('Arrived_From_Points', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/Arrived_From_Points.geojson',
+                cluster: true,
+                clusterMaxZoom: 1, // Max zoom to cluster points on
+                clusterRadius: 2 // Radius of each cluster when clustering points (defaults to 50)
+          });
+        
+        
+                map.addLayer({
+        'id': 'Arrived_From_Points',
+        'type': 'circle',
+        'source': 'Arrived_From_Points',
+        'layout': {
+                'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 4,
+            'circle-stroke-width': 2,
+            'circle-color': '#ec008e',
+            'circle-stroke-color': 'white'
+         },
+        });
+        
+        map.addSource('Departing_To_Points', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/data/Departing_To_Points.geojson',
+                cluster: true,
+                clusterMaxZoom: 1, // Max zoom to cluster points on
+                clusterRadius: 2 // Radius of each cluster when clustering points (defaults to 50)
+          });
+        
+        map.addLayer({
+        'id': 'Departing_To_Points',
+        'type': 'circle',
+        'source': 'Departing_To_Points',
+        'layout': {
+                'visibility': 'visible'
+        },    
+        'paint': {
+            'circle-radius': 4,
+            'circle-stroke-width': 2,
+            'circle-color': '#30b2c3',
+            'circle-stroke-color': 'white'
+         },
+    });
+});
+ 
+    document.getElementById('slider').disabled = true;  
+
+           
+        document.getElementById('filters').addEventListener('change', (event) => {
+  const day = event.target.value;
+  // update the map filter
+  if (day === 'all') {
+    filterDay = 'All Years' ;
+    document.getElementById('slider').disabled = true;  
+    document.getElementById('active-year').innerText = 'All Years'
+      
+    map.setFilter('myLayer', null)
+    map.setFilter('Departing_To_Points', null)
+    map.setFilter('Arrived_From_Points', null)
+    map.setFilter('National_Arrived_From_Points', null)
+    map.setFilter('National_Departing_To_Points', null)
+    map.setFilter('arrived_from_lines', null)
+    map.setFilter('departure_to_lines', null)
+  
+  } else if (day === 'weekday') {
+        //Sliderbar Filter by year
+        filterDay = 1940 + parseInt(event.target.value);
+        document.getElementById('slider').disabled = false;  
+
+      document.getElementById('slider').addEventListener('input', (event) => { 
+      document.getElementById('active-year').innerText = 1940 + parseInt(event.target.value);
+          
+      const ayear = 1940+parseInt(event.target.value)    
+      map.setFilter('Departing_To_Points', ['==', ['number', ['get', 'Dyear']], ayear]); 
+      map.setFilter('Arrived_From_Points', ['==', ['number', ['get', 'Ayear']], ayear]); 
+      map.setFilter('National_Arrived_From_Points', ['==', ['number', ['get', 'Ayear']], ayear]);
+      map.setFilter('National_Departing_To_Points', ['==', ['number', ['get', 'Dyear']], ayear]);
+      map.setFilter('arrived_from_lines', ['==', ['number', ['get', 'Year']], ayear]);
+      map.setFilter('departure_to_lines', ['==', ['number', ['get', 'Year']], ayear]); 
+      });
+         
+  } else {
+    console.log('error');
+  }
+   
+ });
+ 
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'Arrived_From_Points', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        var p = e.features[0].properties;     
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<u>This person <strong>came from this location to </strong>the Jewish Temporary Shelter with the below information</u>' + '<br>' + "JML Acc No.: " + p.JML_Acc + '<br>' + "<strong>Case No: </strong>" + p.Case_no+ '<br>' + "<strong>Name: </strong>" + p.name_surname + '<br>' + "<strong>Admitted to the JTS: </strong>" + p.Arrival_Admitted_Date + '<br>' + "<strong>Arriving from: </strong>" + p.arrived_from_NATION + ', ' + p.arrived_from_CITY_COUNTY + '<br>' + "<strong>Birthplace: </strong>" + p.birthplace + '<br>' + "<strong>Nationality: </strong>" + p.nationality + '<br>' + "<strong>Age: </strong>" + p.age + '<br>' + "<strong>Trade: </strong>" + p.trade + '<br>' + "<strong>Departed from the JTS: </strong>" + p.date_of_departure + '<br>' + "<strong>Departing to: </strong>" + p.destination_CITY_COUNTY + ', ' + p.destination_NATION+ ', ' + p.destination_ADDRESS + '<br>' + "<strong>Number in Group/Family: </strong>" + p.number_in_family+ '<br>' + 'This point uses <strong>local</strong> georeferenced information.')
+        .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Arrived_From_Points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Arrived_From_Points', () => {
+        map.getCanvas().style.cursor = '';      
+        });  
+        
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'Departing_To_Points', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        var p = e.features[0].properties;
+    
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<u>This person <strong>settled here from </strong>the Jewish Temporary Shelter with the below information</u>' + '<br>' + "JML Acc No.: " + p.JML_Acc + '<br>' + "<strong>Case No: </strong>" + p.Case_no+ '<br>' + "<strong>Name: </strong>" + p.name_surname + '<br>' + "<strong>Admitted to the JTS: </strong>" + p.Arrival_Admitted_Date + '<br>' + "<strong>Arriving from: </strong>" + p.arrived_from_NATION + ', ' + p.arrived_from_CITY_COUNTY + '<br>' + "<strong>Birthplace: </strong>" + p.birthplace + '<br>' + "<strong>Nationality: </strong>" + p.nationality + '<br>' + "<strong>Age: </strong>" + p.age + '<br>' + "<strong>Trade: </strong>" + p.trade + '<br>' + "<strong>Departed from the JTS: </strong>" + p.date_of_departure + '<br>' + "<strong>Departing to: </strong>" + p.destination_CITY_COUNTY + ', ' + p.destination_NATION+ ', ' + p.destination_ADDRESS + '<br>' + "<strong>Number in Group/Family: </strong>" + p.number_in_family+ '<br>' + 'This point uses <strong>local</strong> georeferenced information.')
+        .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Departing_To_Points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Departing_To_Points', () => {
+        map.getCanvas().style.cursor = '';      
+        });  
+    
+    //Mapbox navigation controls
+    map.addControl(new mapboxgl.NavigationControl());
+
+    
+    // After the last frame rendered before the map enters an "idle" state.
+    map.on('idle', () => {
+    // If these two layers were not added to the map, abort
+    if (!map.getLayer('arrived_from_lines')|| !map.getLayer('departure_to_lines')) {
+    return;
+    }
+
+    // Enumerate ids of the layers.
+    const toggleableLayerIds = ['arrived_from_lines','departure_to_lines'];
+
+    // Set up the corresponding toggle button for each layer.
+    for (const id of toggleableLayerIds) {
+    // Skip layers that already have a button set up.
+    if (document.getElementById(id)) {
+    continue;
+    }
+
+    // Create a link.
+    const link = document.createElement('a');
+    link.id = id;
+    link.href = '#';
+    link.textContent = id;
+    link.className = 'active';
+
+    // Show or hide layer when the toggle is clicked.
+    link.onclick = function (e) {
+    const clickedLayer = this.textContent;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const visibility = map.getLayoutProperty(
+    clickedLayer,
+    'visibility'
+    );
+
+    // Toggle layer visibility by changing the layout object's visibility property.
+    if (visibility === 'visible') {
+        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+            } else {
+            this.className = 'active';
+            map.setLayoutProperty(
+                clickedLayer,
+                    'visibility',
+                    'visible'
+            );
+        }
+    };
+    const layers = document.getElementById('menu');
+    layers.appendChild(link);
+    };
+        
+    });
+</script>
+ 
+</body>
+</html>
